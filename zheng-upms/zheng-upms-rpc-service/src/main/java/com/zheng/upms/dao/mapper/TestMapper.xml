@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zheng.upms.dao.mapper.TestMapper">
+  <resultMap id="BaseResultMap" type="com.zheng.upms.dao.model.Test">
+    <id column="test1" jdbcType="VARCHAR" property="test1" />
+    <result column="test2" jdbcType="INTEGER" property="test2" />
+    <result column="test" jdbcType="DECIMAL" property="test" />
+    <result column="test3" jdbcType="TIMESTAMP" property="test3" />
+    <result column="test4" jdbcType="DATE" property="test4" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    test1, test2, test, test3, test4
+  </sql>
+  <select id="selectByExample" parameterType="com.zheng.upms.dao.model.TestExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from test
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from test
+    where test1 = #{test1,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from test
+    where test1 = #{test1,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.zheng.upms.dao.model.TestExample">
+    delete from test
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.zheng.upms.dao.model.Test">
+    insert into test (test1, test2, test, 
+      test3, test4)
+    values (#{test1,jdbcType=VARCHAR}, #{test2,jdbcType=INTEGER}, #{test,jdbcType=DECIMAL}, 
+      #{test3,jdbcType=TIMESTAMP}, #{test4,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zheng.upms.dao.model.Test">
+    insert into test
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="test1 != null">
+        test1,
+      </if>
+      <if test="test2 != null">
+        test2,
+      </if>
+      <if test="test != null">
+        test,
+      </if>
+      <if test="test3 != null">
+        test3,
+      </if>
+      <if test="test4 != null">
+        test4,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="test1 != null">
+        #{test1,jdbcType=VARCHAR},
+      </if>
+      <if test="test2 != null">
+        #{test2,jdbcType=INTEGER},
+      </if>
+      <if test="test != null">
+        #{test,jdbcType=DECIMAL},
+      </if>
+      <if test="test3 != null">
+        #{test3,jdbcType=TIMESTAMP},
+      </if>
+      <if test="test4 != null">
+        #{test4,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.zheng.upms.dao.model.TestExample" resultType="java.lang.Long">
+    select count(*) from test
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update test
+    <set>
+      <if test="record.test1 != null">
+        test1 = #{record.test1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.test2 != null">
+        test2 = #{record.test2,jdbcType=INTEGER},
+      </if>
+      <if test="record.test != null">
+        test = #{record.test,jdbcType=DECIMAL},
+      </if>
+      <if test="record.test3 != null">
+        test3 = #{record.test3,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.test4 != null">
+        test4 = #{record.test4,jdbcType=DATE},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update test
+    set test1 = #{record.test1,jdbcType=VARCHAR},
+      test2 = #{record.test2,jdbcType=INTEGER},
+      test = #{record.test,jdbcType=DECIMAL},
+      test3 = #{record.test3,jdbcType=TIMESTAMP},
+      test4 = #{record.test4,jdbcType=DATE}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zheng.upms.dao.model.Test">
+    update test
+    <set>
+      <if test="test2 != null">
+        test2 = #{test2,jdbcType=INTEGER},
+      </if>
+      <if test="test != null">
+        test = #{test,jdbcType=DECIMAL},
+      </if>
+      <if test="test3 != null">
+        test3 = #{test3,jdbcType=TIMESTAMP},
+      </if>
+      <if test="test4 != null">
+        test4 = #{test4,jdbcType=DATE},
+      </if>
+    </set>
+    where test1 = #{test1,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zheng.upms.dao.model.Test">
+    update test
+    set test2 = #{test2,jdbcType=INTEGER},
+      test = #{test,jdbcType=DECIMAL},
+      test3 = #{test3,jdbcType=TIMESTAMP},
+      test4 = #{test4,jdbcType=DATE}
+    where test1 = #{test1,jdbcType=VARCHAR}
+  </update>
+  <cache type="org.mybatis.caches.ehcache.LoggingEhcache" />
+</mapper>

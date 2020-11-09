@@ -15,7 +15,7 @@ public class Generator {
 	// 根据命名规范，只修改此常量值即可
 	private static String MODULE = "zheng-upms";
 	private static String DATABASE = "zheng";
-	private static String TABLE_PREFIX = "upms_";
+	private static String TABLE_PREFIX = "t_";
 	private static String PACKAGE_NAME = "com.zheng.upms";
 	private static String JDBC_DRIVER = PropertiesFileUtil.getInstance("generator").get("generator.jdbc.driver");
 	private static String JDBC_URL = PropertiesFileUtil.getInstance("generator").get("generator.jdbc.url");
@@ -24,7 +24,7 @@ public class Generator {
 	// 需要insert后返回主键的表配置，key:表名,value:主键名
 	private static Map<String, String> LAST_INSERT_ID_TABLES = new HashMap<>();
 	static {
-		LAST_INSERT_ID_TABLES.put("upms_user", "user_id");
+//		LAST_INSERT_ID_TABLES.put("upms_user", "user_id");
 	}
 
 	/**

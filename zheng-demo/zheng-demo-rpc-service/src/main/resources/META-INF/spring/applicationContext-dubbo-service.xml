@@ -7,5 +7,11 @@
     <bean id="demoService" class="com.zheng.demo.rpc.service.impl.DemoServiceImpl"/>
     <dubbo:service interface="com.zheng.demo.rpc.api.DemoService" ref="demoService" timeout="5000" retries="0" />
 
+    <dubbo:application name="cs-upms-rpc-service"/>
+
+    <dubbo:registry address="zookeeper://zkserver:2181"/>
+
+    <dubbo:protocol name="dubbo" port="20882"/>
+
 </beans>
 

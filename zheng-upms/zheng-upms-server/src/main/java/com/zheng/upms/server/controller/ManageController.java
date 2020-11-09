@@ -1,7 +1,10 @@
 package com.zheng.upms.server.controller;
 
 import com.zheng.common.base.BaseController;
-import com.zheng.upms.dao.model.*;
+import com.zheng.upms.dao.model.UpmsPermission;
+import com.zheng.upms.dao.model.UpmsSystem;
+import com.zheng.upms.dao.model.UpmsSystemExample;
+import com.zheng.upms.dao.model.UpmsUser;
 import com.zheng.upms.rpc.api.UpmsApiService;
 import com.zheng.upms.rpc.api.UpmsSystemService;
 import io.swagger.annotations.Api;

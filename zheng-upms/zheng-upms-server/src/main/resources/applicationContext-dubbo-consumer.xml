@@ -9,10 +9,11 @@
 
     <dubbo:application name="zheng-upms-server"/>
 
-    <dubbo:registry file="./zheng-upms-server-dubbo.cache" address="zookeeper://zkserver:2181"/>
-
+    <!--<dubbo:registry file="./zheng-upms-server-dubbo.cache" address="zookeeper://127.0.0.1:2181"/>-->
+    <dubbo:registry  file="./zheng-upms-server-dubbo.cache" address="zookeeper://127.0.0.1:2181"/>
+    <!--<dubbo:protocol  host="192.168.1.10"/>-->
     <!-- 订阅服务 -->
-    <dubbo:consumer check="false"/>
+    <dubbo:consumer check="true"/>
 
     <!-- 系统 -->
     <dubbo:reference id="upmsSystemService" interface="com.zheng.upms.rpc.api.UpmsSystemService" mock="true"/>

@@ -28,7 +28,9 @@
         <param-name>contextConfigLocation</param-name>
         <param-value>
             classpath*:applicationContext*.xml
+
         </param-value>
+
     </context-param>
 
     <!-- 日志配置文件 -->
